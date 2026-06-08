@@ -1,0 +1,392 @@
+/* Form dengan custom select — dropdown tidak terpotong kartu */
+.admin-form-card:has([data-admin-select]) {
+    overflow: visible;
+    border-radius: 1rem;
+}
+
+.admin-form-card:has([data-admin-select])::after {
+    display: none;
+}
+
+.admin-form-card:has([data-admin-select]) > * {
+    position: relative;
+    z-index: 1;
+}
+
+.admin-form-card:has([data-admin-select-open]) {
+    z-index: 20;
+}
+
+[data-admin-select-open] {
+    z-index: 50;
+}
+
+.admin-form-card:has([data-admin-select-open]) [data-admin-select] {
+    overflow: visible;
+}
+
+/* Custom select — trigger & menu melengkung (sama di filter & form) */
+.admin-filter-select {
+    position: relative;
+}
+
+.admin-filter-select__trigger {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(203 213 225);
+    background: #fff;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: rgb(51 65 85);
+    text-align: left;
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.admin-filter-select__trigger:hover {
+    border-color: rgb(244 63 94 / 0.45);
+}
+
+.admin-filter-select__trigger:focus {
+    outline: none;
+    border-color: rgb(244 63 94);
+    box-shadow: 0 0 0 4px rgb(255 241 242);
+}
+
+.admin-filter-select__trigger[aria-expanded='true'] {
+    border-color: rgb(244 63 94);
+    box-shadow: 0 0 0 4px rgb(255 241 242);
+}
+
+.admin-filter-select__chevron {
+    height: 1rem;
+    width: 1rem;
+    flex-shrink: 0;
+    color: rgb(100 116 139);
+    transition: transform 0.2s ease;
+}
+
+.admin-filter-select__trigger[aria-expanded='true'] .admin-filter-select__chevron {
+    transform: rotate(180deg);
+}
+
+.admin-filter-select__menu {
+    position: absolute;
+    top: calc(100% + 0.375rem);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    margin: 0;
+    list-style: none;
+    padding: 0.375rem;
+    border-radius: 0.875rem;
+    border: 1px solid rgb(226 232 240);
+    background: #fff;
+    box-shadow:
+        0 4px 6px -1px rgb(15 23 42 / 0.08),
+        0 12px 24px -6px rgb(15 23 42 / 0.14);
+}
+
+.admin-filter-select__option {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0.625rem;
+    background: transparent;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    text-align: left;
+    color: rgb(51 65 85);
+    cursor: pointer;
+    transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.admin-filter-select__option:hover,
+.admin-filter-select__option.is-selected {
+    background: rgb(255 241 242);
+    color: rgb(159 18 57);
+    font-weight: 600;
+}
+
+/* Date picker kustom — kalender ke atas + input manual */
+.admin-date-picker {
+    position: relative;
+}
+
+.admin-date-picker__field {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 11rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(203 213 225);
+    background: #fff;
+    padding: 0.125rem 0.125rem 0.125rem 0.875rem;
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.admin-date-picker__field:hover {
+    border-color: rgb(244 63 94 / 0.45);
+}
+
+.admin-date-picker__field:focus-within,
+.admin-date-picker__field.is-open {
+    border-color: rgb(244 63 94);
+    box-shadow: 0 0 0 4px rgb(255 241 242);
+}
+
+.admin-date-picker__text {
+    min-width: 0;
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: rgb(51 65 85);
+    outline: none;
+}
+
+.admin-date-picker__text::placeholder {
+    color: rgb(148 163 184);
+}
+
+.admin-date-picker__text.is-invalid {
+    color: rgb(185 28 28);
+}
+
+.admin-date-picker__toggle {
+    display: inline-flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 0.625rem;
+    background: rgb(255 241 242);
+    color: rgb(159 18 57);
+    cursor: pointer;
+    transition: background-color 0.12s ease;
+}
+
+.admin-date-picker__toggle:hover {
+    background: rgb(255 228 230);
+}
+
+.admin-date-picker__icon {
+    height: 1.125rem;
+    width: 1.125rem;
+}
+
+.admin-date-picker__panel {
+    display: none;
+    width: 18.5rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid rgb(226 232 240);
+    background: #fff;
+}
+
+.admin-date-picker__panel:not(.hidden) {
+    display: block;
+}
+
+.admin-date-picker__panel.is-fixed {
+    z-index: 200;
+}
+
+.admin-date-picker__panel.is-fixed.is-above {
+    box-shadow:
+        0 -8px 20px -6px rgb(15 23 42 / 0.12),
+        0 -20px 40px -12px rgb(190 18 60 / 0.14);
+}
+
+.admin-date-picker__panel.is-fixed.is-below {
+    box-shadow:
+        0 8px 20px -6px rgb(15 23 42 / 0.12),
+        0 20px 40px -12px rgb(190 18 60 / 0.14);
+}
+
+.admin-date-picker__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 0.75rem 0.5rem;
+    background: linear-gradient(180deg, rgb(255 241 242) 0%, #fff 100%);
+}
+
+.admin-date-picker__month {
+    flex: 1;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgb(136 19 55);
+    letter-spacing: 0.01em;
+}
+
+.admin-date-picker__nav {
+    display: inline-flex;
+    height: 2rem;
+    width: 2rem;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 0.625rem;
+    background: rgb(255 255 255);
+    color: rgb(159 18 57);
+    box-shadow: 0 0 0 1px rgb(254 205 211);
+    cursor: pointer;
+    transition: background-color 0.12s ease, transform 0.12s ease;
+}
+
+.admin-date-picker__nav:hover {
+    background: rgb(255 241 242);
+}
+
+.admin-date-picker__nav svg {
+    height: 1rem;
+    width: 1rem;
+}
+
+.admin-date-picker__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.125rem;
+    padding: 0.375rem 0.625rem 0.25rem;
+}
+
+.admin-date-picker__weekdays span {
+    text-align: center;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgb(100 116 139);
+}
+
+.admin-date-picker__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.125rem;
+    padding: 0.25rem 0.625rem 0.625rem;
+    background: #fff;
+}
+
+.admin-date-picker__day {
+    display: inline-flex;
+    height: 2rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 0.625rem;
+    background-color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: rgb(51 65 85);
+    cursor: pointer;
+    transition:
+        background-color 0.12s ease,
+        color 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+.admin-date-picker__day:hover:not(.admin-date-picker__day--empty) {
+    background: rgb(255 241 242);
+    color: rgb(159 18 57);
+}
+
+.admin-date-picker__day.is-today {
+    box-shadow: 0 0 0 1px rgb(244 63 94 / 0.45) inset;
+    color: rgb(159 18 57);
+    font-weight: 700;
+}
+
+.admin-date-picker__day.is-selected {
+    background: linear-gradient(135deg, rgb(159 18 57) 0%, rgb(136 19 55) 100%);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 4px 10px -4px rgb(190 18 60 / 0.55);
+}
+
+.admin-date-picker__day--empty {
+    pointer-events: none;
+    background: transparent;
+}
+
+.admin-date-picker__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-top: 1px solid rgb(241 245 249);
+    padding: 0.5rem 0.625rem 0.625rem;
+    background: rgb(248 250 252 / 0.85);
+}
+
+.admin-date-picker__footer-btn {
+    border: none;
+    border-radius: 0.625rem;
+    background: transparent;
+    padding: 0.375rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgb(100 116 139);
+    cursor: pointer;
+    transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.admin-date-picker__footer-btn:hover {
+    background: rgb(241 245 249);
+    color: rgb(51 65 85);
+}
+
+.admin-date-picker__footer-btn--primary {
+    color: rgb(159 18 57);
+}
+
+.admin-date-picker__footer-btn--primary:hover {
+    background: rgb(255 241 242);
+    color: rgb(136 19 55);
+}
+
+.admin-form-card:has([data-admin-date-picker]) {
+    overflow: visible;
+}
+
+.admin-form-card:has([data-admin-date-picker])::before,
+.admin-form-card:has([data-admin-date-picker])::after {
+    display: none;
+}
+
+.admin-form-card:has([data-admin-date-picker]) > * {
+    position: relative;
+    z-index: 1;
+}
+
+.admin-form-card:has([data-admin-date-open]) {
+    z-index: 20;
+}
+
+.admin-form-card .admin-date-picker {
+    width: 100%;
+}
+
+.admin-form-card .admin-date-picker__field {
+    width: 100%;
+    min-width: 0;
+}
+
+[data-admin-date-open] {
+    z-index: 50;
+}
